@@ -14,9 +14,9 @@
 get_header(); ?>
 
 <section class="container">
-	<div class="slider"
-		 style="background-image: url('<?php echo get_bloginfo('template_directory'); ?>/images/slider.jpg');">
-	</div>
+	<?php if (function_exists('soliloquy')) {
+		soliloquy('15');
+	} ?>
 </section>
 
 
@@ -27,62 +27,62 @@ get_header(); ?>
 	</div>
 </section>
 
+<!--?php if (have_posts()): ?>
 	<section class="container featured-text">
 		<div class="color-2">
-			<?php if (have_posts()): ?>
-				<?php while (have_posts()): ?>
-					<?php the_post(); ?>
-					<?php the_content(); ?>
-				<?php endwhile; ?>
+			<?php //while (have_posts()): ?>
+				<?php //the_post(); ?>
+				<?php //the_content(); ?>
+			<?php //endwhile; ?>
 
-			<?php endif; ?>
-		</div>
-	</section> <!-- container -->
-
-	<section class="container">
-		<div class="color-1">
-			<div class="row">
-				<div class="col-md-4">
-					<h1>Be Original, Do Good</h1>
-					<p>
-						The Silent Vowel Art Gallery was established to encourage admirers to become collectors,
-						creatives
-						to become professionals, and buyers to become supporters.
-					</p>
-					<a href="http://localhost/index.php/be-original-do-good/" class="accent">Read More &raquo;</a>
-				</div>
-				<div class="col-md-4">
-					<h1>Investing in Art</h1>
-					<p>
-						Becoming an art investor can sound like a frightening (and expensive) proposition. It doesn’t
-						need
-						to be.
-					</p>
-					<a href="http://localhost/index.php/investing-in-art/" class="accent">Read More &raquo;</a>
-				</div>
-				<div class="col-md-4">
-					<h1>The Curator</h1>
-					<p>
-						Vestibulum porttitor feugiat neque nec viverra. Vivamus venenatis sed enim a ullamcorper. In in
-						feugiat diam. Aliquam imperdiet egestas libero quis eleifend.
-					</p>
-					<a href="http://localhost/index.php/the-curator/" class="accent">Read More &raquo;</a>
-				</div>
-			</div>
 		</div>
 	</section>
+<!--?php endif; ?--> <!-- container -->
+
+<section class="container">
+	<div class="color-1">
+		<div class="row">
+			<div class="col-md-4">
+				<h1>Be Original, Do Good</h1>
+				<p>
+					The Silent Vowel Art Gallery was established to encourage admirers to become collectors,
+					creatives
+					to become professionals, and buyers to become supporters.
+				</p>
+				<a href="http://localhost/index.php/be-original-do-good/" class="accent">Read More &raquo;</a>
+			</div>
+			<div class="col-md-4">
+				<h1>Investing in Art</h1>
+				<p>
+					Becoming an art investor can sound like a frightening (and expensive) proposition. It doesn’t
+					need
+					to be.
+				</p>
+				<a href="http://localhost/index.php/investing-in-art/" class="accent">Read More &raquo;</a>
+			</div>
+			<div class="col-md-4">
+				<h1>The Curator</h1>
+				<p>
+					Vestibulum porttitor feugiat neque nec viverra. Vivamus venenatis sed enim a ullamcorper. In in
+					feugiat diam. Aliquam imperdiet egestas libero quis eleifend.
+				</p>
+				<a href="http://localhost/index.php/the-curator/" class="accent">Read More &raquo;</a>
+			</div>
+		</div>
+	</div>
+</section>
 
 
-	<script>
-		var theme_url = "<?php echo get_template_directory_uri(); ?>";
-		var foo;
-		$(function () {
-			$.ajaxSetup({
-				url: '/wp-admin/admin-ajax.php',
-				type: 'POST',
-				dataType: 'JSON'
-			});
-		})
-	</script>
+<script>
+	var theme_url = "<?php echo get_template_directory_uri(); ?>";
+	var foo;
+	$(function () {
+		$.ajaxSetup({
+			url: '/wp-admin/admin-ajax.php',
+			type: 'POST',
+			dataType: 'JSON'
+		});
+	})
+</script>
 
 <?php get_footer(); ?>

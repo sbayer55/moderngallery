@@ -99,6 +99,7 @@ function moderngallery_scripts()
 	wp_enqueue_style('bootstrap-theme-style', get_template_directory_uri() . '/css/bootstrap-theme.css', [], null);
 	wp_enqueue_style('moderngallery-theme-style', get_template_directory_uri() . '/style.css', [], null);
 	wp_enqueue_script('jquery-script', get_template_directory_uri() . '/js/jquery-2.1.4.js', [], null);
+	wp_enqueue_script('jquery-script', get_template_directory_uri() . '/js/jquery.validate.js', [], null);
 	wp_enqueue_script('moderngallery-script', get_template_directory_uri() . '/js/bootstrap.js', [], null);
 }
 

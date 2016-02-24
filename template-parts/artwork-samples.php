@@ -17,7 +17,7 @@
 <?php
 $args = [
 	'post_type' => 'artwork',
-	'posts_per_page' => 6,
+	'posts_per_page' => 25,
 ];
 $artist = new WP_Query($args);
 ?>
