@@ -18,78 +18,20 @@ body {
 	color: #666666;
 }
 .navbar-modern {
-	/* margin-top: 10px; */
-	/* margin-left: -60px; */
-	/* margin-right: -60px; */
 	opacity: 0.94;
 	padding: 0px;
 }
 .navbar-modern, .navbar-brand {
 	font-size: 28px;
-	/* border-bottom: 1px #2aabd2 solid; */
 }
 .nav > li > a {
 	text-align: center;
-	padding: 34px 36px 34px 0px;
 }
 .nav > li > a:hover {
 	background-color: inherit;
 }
-.slider {
-	/*margin-top: -90px;*/
-	display: block;
-	background-position: center;
-	background-size: cover;
-	/* margin: 0px -60px; */
-	/* border-bottom: 0px #2aabd2 solid; */
-}
 @media screen and (min-height: 0px) { .slider { height: 450px;  } }
 @media screen and (min-height: 768px) { .slider { height: 560px;  } }
-
-.featured-text {
-	font-size: 30px;
-	text-align: center;
-	line-height: 50px;
-}
-.accent, a.accent, a.accent:active, a.accent:focus, a.accent:hover, a.accent:visited {
-	color: #2aabd2;
-}
-
-.thumbnail > img, .thumbnail a > img {
-	min-width: 100%;
-}
-.thumbnail-fixed > div {
-	min-width: 100%;
-	height: 250px;
-	overflow: hidden;
-	position: relative;
-	background-size: cover;
-}
-.slide-up-on-hover {
-	transition: all 0.5s ease;
-	padding-top: 250px;
-	display: block;
-	position: absolute;
-	top: 0px;
-	text-align: center;
-	width: 100%;
-	color: #FFF;
-}
-.slide-up-on-hover:hover {
-	padding-top: 0px;
-}
-.slide-up-on-hover > div {
-	background-color: rgba(0, 0, 0, 0.6);
-	height: 250px;
-	margin-top: 50%;
-}
-.slide-up-on-hover .title {
-	font-size: 22px;
-}
-.img-fullwidth {
-	min-width: 100%;
-	object-fit: cover;
-}
 
 a, a:active, a:focus, a:hover, a:visited {
 	color: inherit;
@@ -112,36 +54,9 @@ footer .nav > li > a:hover, footer .nav > li > a:focus {
 	background-color: #8A8A8A;
 }
 
-.btn {
-	font-size: 20px;
-}
-div.row-wide, div.color-1, div.color-2, div.color-3 {
-	/*margin-left: -60px;
-	margin-right: -60px;*/
-}
-div.color-1, div.color-2, div.color-3 {
-	padding: 40px 60px;
-}
-div.color-1 { background-color: #FFF; }
-div.color-2 { background-color: #E8E8E8; }
-div.color-3 { background-color: #3B3B3B; color: #8A8A8A }
-
-h3.caption {
-	background-color: #2aabd2;
-	color: #FFFFFF;
-	margin-top: 0px;
-	padding: 10px 2px 4px;
-	text-align: center;
-	font-size: 26px;
-}
-
 .hosted-field {
 	height: 30px;
 	border-bottom: 1px solid #0096dd;
 	max-width: 300px;
 	margin-bottom: 15px;
-}
-
-input.register {
-	width: 300px;
 }

@@ -13,76 +13,30 @@
 
 get_header(); ?>
 
-<section class="container">
-	<?php if (function_exists('soliloquy')) {
-		soliloquy('15');
-	} ?>
-</section>
 
+<?php
+$args = [
+	'post_type' => 'artwork',
+	'posts_per_page' => 5,
+	'orderby' => 'rand'
+];
+?>
 
-<section class="container">
-	<div class="color-1">
-		<h1>Featured Artists</h1>
-		<?php get_template_part('template-parts/artist-samples'); ?>
-	</div>
-</section>
+<?php $artwork = new WP_Query($args) ?>
+<?php if ($artwork->have_posts()): ?>
+	<section class="container">
+		<div class="">
 
-<!--?php if (have_posts()): ?>
-	<section class="container featured-text">
-		<div class="color-2">
-			<?php //while (have_posts()): ?>
-				<?php //the_post(); ?>
-				<?php //the_content(); ?>
-			<?php //endwhile; ?>
+			<?php while ($artwork->have_posts()): $artwork->the_post(); ?>
+
+				<?php the_content(); ?>
+				<?php the_post_thumbnail('medium', ['class' => 'img-masonry']); ?>
+
+			<?php endwhile; ?>
 
 		</div>
-	</section>
-<!--?php endif; ?--> <!-- container -->
-
-<section class="container">
-	<div class="color-1">
-		<div class="row">
-			<div class="col-md-4">
-				<h1>Be Original, Do Good</h1>
-				<p>
-					The Silent Vowel Art Gallery was established to encourage admirers to become collectors,
-					creatives
-					to become professionals, and buyers to become supporters.
-				</p>
-				<a href="http://localhost/index.php/be-original-do-good/" class="accent">Read More &raquo;</a>
-			</div>
-			<div class="col-md-4">
-				<h1>Investing in Art</h1>
-				<p>
-					Becoming an art investor can sound like a frightening (and expensive) proposition. It doesn’t
-					need
-					to be.
-				</p>
-				<a href="http://localhost/index.php/investing-in-art/" class="accent">Read More &raquo;</a>
-			</div>
-			<div class="col-md-4">
-				<h1>The Curator</h1>
-				<p>
-					Vestibulum porttitor feugiat neque nec viverra. Vivamus venenatis sed enim a ullamcorper. In in
-					feugiat diam. Aliquam imperdiet egestas libero quis eleifend.
-				</p>
-				<a href="http://localhost/index.php/the-curator/" class="accent">Read More &raquo;</a>
-			</div>
-		</div>
-	</div>
-</section>
-
-
-<script>
-	var theme_url = "<?php echo get_template_directory_uri(); ?>";
-	var foo;
-	$(function () {
-		$.ajaxSetup({
-			url: '/wp-admin/admin-ajax.php',
-			type: 'POST',
-			dataType: 'JSON'
-		});
-	})
-</script>
+	</section><!-- container -->
+<?php endif; ?>
+<?php wp_reset_postdata(); ?>
 
 <?php get_footer(); ?>

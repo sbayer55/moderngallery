@@ -44,17 +44,15 @@ if (filter_var($_POST['action'], FILTER_SANITIZE_STRING) == 'register_user') {
 		$result = $conn->query($query);
 		global $message;
 		$message = "Sent query!";
-	}
-	else {
+	} else {
 		global $message;
 		$message = "something failed.";
 	}
-}
-	else {
+} else {
 
-		global $message;
-		$message = "No user registration data in POST";
-	}
+	global $message;
+	$message = "No user registration data in POST";
+}
 
 ?><!DOCTYPE html>
 <html class="no-js">
@@ -66,14 +64,18 @@ if (filter_var($_POST['action'], FILTER_SANITIZE_STRING) == 'register_user') {
 </head>
 
 <body>
-<?php if (has_nav_menu('primary')): ?>
-	<div class="container">
-		<div class="row row-wide">
-			<div class="col-sm-3">
-				<img style="width: 100%; height: 200px; padding: 5px 5px 5px 0px;"
-					 src="<?php echo get_bloginfo('template_directory'); ?>/images/brand.svg" alt="The Silent Vowel">
-			</div>
-			<div class="col-sm-9">
+
+
+<div class="container-fluid">
+	<div class="row">
+		<section class="col-md-3 col-lg-2">
+
+			<!-- brand img -->
+			<img style="width: 100%; height: 200px; padding: 5px 5px 5px 0px;"
+				 src="<?php echo get_bloginfo('template_directory'); ?>/images/brand.svg" alt="The Silent Vowel">
+
+			<!-- Menu Nav Bar -->
+			<?php if (has_nav_menu('primary')): ?>
 				<div id="collapse-primary-menu" class="collapse navbar-collapse navbar-modern">
 					<ul class="nav navbar-nav">
 						<?php
@@ -91,15 +93,16 @@ if (filter_var($_POST['action'], FILTER_SANITIZE_STRING) == 'register_user') {
 						?>
 					</ul>
 				</div><!-- navbar -->
-				<div>
-					The Silent Vowel Art Gallery is an online space dedicated to showcasing emerging talent in
-					contemporary art. Through our unique model - Be Original, Do Good - we are able to invest in our
-					artists, our clients, and our future.
-				</div>
+			<?php endif; ?>
+
+			<!-- About site text -->
+			<div>
+				The Silent Vowel Art Gallery is an online space dedicated to showcasing emerging talent in
+				contemporary art. Through our unique model - Be Original, Do Good - we are able to invest in our
+				artists, our clients, and our future.
 			</div>
-		</div>
-	</div>
-	<div class="container">
-		<?php echo $GLOBALS['message']; ?>
-	</div>
-<?php endif; ?>
+
+		</section>
+
+		<section class="col-md-9 col-lg-10">
+			<!-- Start Body: -->

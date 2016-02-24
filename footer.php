@@ -10,6 +10,11 @@
  */
 ?>
 
+		<!-- End Body: -->
+		</section>
+	</div>
+</div>
+
 <?php if (!is_home() && !is_front_page()): ?>
 	<div class="container">
 		<nav>
@@ -38,22 +43,23 @@
 	<section class="container">
 		<div class="row">
 			<?php for ($n = 1; $n <= 4; $n++): ?>
-				<?php if (has_nav_menu('footer_column_'.$n)): ?>
+				<?php if (has_nav_menu('footer_column_' . $n)): ?>
 					<div class="col-sm-3">
 						<?php
 						// All this to get the name of the menu:
-						$menu_name = 'footer_column_'.$n;
+						$menu_name = 'footer_column_' . $n;
 						$locations = get_nav_menu_locations();
-						$menu_id = $locations[ $menu_name ] ;
+						$menu_id = $locations[$menu_name];
 						$menu = wp_get_nav_menu_object($menu_id);
 						?>
 						<span style="color: #8A8A8A; margin-bottom: 6px; display: block;">
 							<?php echo $menu->name; ?>
 						</span>
-						<ul class="nav nav-pills nav-stacked" style="border-left: 1px solid #8A8A8A; margin-bottom: 20px;">
+						<ul class="nav nav-pills nav-stacked"
+							style="border-left: 1px solid #8A8A8A; margin-bottom: 20px;">
 							<?php
 							$menu_args = array(
-								'theme_location' => 'footer_column_'.$n,
+								'theme_location' => 'footer_column_' . $n,
 								'menu' => 'footer-menu',
 								'container' => false,
 								'items_wrap' => '%3$s',
