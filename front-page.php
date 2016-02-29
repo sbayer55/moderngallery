@@ -23,20 +23,44 @@ $args = [
 ?>
 
 <?php $artwork = new WP_Query($args) ?>
-<?php if ($artwork->have_posts()): ?>
-	<section class="container">
-		<div class="">
-
+<section class="content">
+	<div class="grid">
+		<?php if ($artwork->have_posts() && false): ?>
 			<?php while ($artwork->have_posts()): $artwork->the_post(); ?>
 
-				<?php the_content(); ?>
-				<?php the_post_thumbnail('medium', ['class' => 'img-masonry']); ?>
+				<div class="grid-item">
+					<?php the_content(); ?>
+					<?php the_post_thumbnail('medium', ['class' => 'img-masonry']); ?>
+				</div>
 
 			<?php endwhile; ?>
+		<?php endif; ?>
 
-		</div>
-	</section><!-- container -->
-<?php endif; ?>
+	</div>
+</section><!-- container -->
 <?php wp_reset_postdata(); ?>
+
+<script>
+
+	mg.cacheLoaded(function (artwork) {
+		var $columns = [$('<div>', {class: 'grid-column'}), $('<div>', {class: 'grid-column'}), $('<div>', {class: 'grid-column'})];
+		var nextColumn = 0;
+		var count = 0;
+
+		$('.grid').append($columns);
+
+		$.each(artwork, function(index, value) {
+			var $element = mg.toElement(value, count);
+			$columns[nextColumn].append($element);
+
+			$element.find('img').on('load', function() {
+				$(this).closest('.grid-item').addClass('grid-item-loaded');
+			});
+
+			if (++nextColumn >= $columns.length) { nextColumn = 0; }
+			count += 500;
+		});
+	})
+</script>
 
 <?php get_footer(); ?>

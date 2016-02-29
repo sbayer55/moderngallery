@@ -66,43 +66,41 @@ if (filter_var($_POST['action'], FILTER_SANITIZE_STRING) == 'register_user') {
 <body>
 
 
-<div class="container-fluid">
-	<div class="row">
-		<section class="col-md-3 col-lg-2">
+<nav class="navbar-panel">
 
-			<!-- brand img -->
-			<img style="width: 100%; height: 200px; padding: 5px 5px 5px 0px;"
-				 src="<?php echo get_bloginfo('template_directory'); ?>/images/brand.svg" alt="The Silent Vowel">
+	<!-- brand img -->
+	<img style="width: 100%; height: 200px; padding: 5px 5px 5px 0px;"
+		 src="<?php echo get_bloginfo('template_directory'); ?>/images/brand.svg" alt="The Silent Vowel">
 
-			<!-- Menu Nav Bar -->
-			<?php if (has_nav_menu('primary')): ?>
-				<div id="collapse-primary-menu" class="collapse navbar-collapse navbar-modern">
-					<ul class="nav navbar-nav">
-						<?php
-						$menu_args = array(
-							'theme_location' => 'primary',
-							'menu' => 'primary-menu',
-							'container' => false,
-							'before' => '', // here <a href=""> link </a>
-							'after' => '', // <a href=""> Link </a> here
-							'link_before' => '', // <a href=""> here Link </a>
-							'link_after' => '', // <a href=""> Link here </a>
-							'items_wrap' => '%3$s',
-						);
-						wp_nav_menu($menu_args);
-						?>
-					</ul>
-				</div><!-- navbar -->
-			<?php endif; ?>
+	<!-- Menu Nav Bar -->
+	<?php if (has_nav_menu('primary')): ?>
+		<div id="collapse-primary-menu" class="collapse navbar-collapse navbar-modern">
+			<ul class="nav navbar-nav">
+				<?php
+				$menu_args = array(
+					'theme_location' => 'primary',
+					'menu' => 'primary-menu',
+					'container' => false,
+					'before' => '', // here <a href=""> link </a>
+					'after' => '', // <a href=""> Link </a> here
+					'link_before' => '', // <a href=""> here Link </a>
+					'link_after' => '', // <a href=""> Link here </a>
+					'items_wrap' => '%3$s',
+				);
+				wp_nav_menu($menu_args);
+				?>
+			</ul>
+		</div><!-- navbar -->
+	<?php endif; ?>
 
-			<!-- About site text -->
-			<div>
-				The Silent Vowel Art Gallery is an online space dedicated to showcasing emerging talent in
-				contemporary art. Through our unique model - Be Original, Do Good - we are able to invest in our
-				artists, our clients, and our future.
-			</div>
+	<!-- About site text -->
+	<div>
+		The Silent Vowel Art Gallery is an online space dedicated to showcasing emerging talent in
+		contemporary art. Through our unique model - Be Original, Do Good - we are able to invest in our
+		artists, our clients, and our future.
+	</div>
 
-		</section>
+</nav>
 
-		<section class="col-md-9 col-lg-10">
-			<!-- Start Body: -->
+<div class="template-area">
+	<!-- Start Body: -->

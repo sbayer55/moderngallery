@@ -100,12 +100,16 @@ function moderngallery_scripts()
 	wp_enqueue_style('moderngallery-theme-style', get_template_directory_uri() . '/style.css', [], null);
 	wp_enqueue_script('jquery-script', get_template_directory_uri() . '/js/jquery-2.1.4.js', [], null);
 	wp_enqueue_script('jquery-script', get_template_directory_uri() . '/js/jquery.validate.js', [], null);
-	wp_enqueue_script('moderngallery-script', get_template_directory_uri() . '/js/bootstrap.js', [], null);
+	//wp_enqueue_script('masonary-script', get_template_directory_uri() . '/js/masonry.min.js', [], null);
+	//wp_enqueue_script('imagesLoaded-script', get_template_directory_uri() . '/js/imagesLoaded.js', [], null);
+	wp_enqueue_script('bootstrap-script', get_template_directory_uri() . '/js/bootstrap.js', [], null);
+	wp_enqueue_script('moderngallery-script', get_template_directory_uri() . '/js/moderngallery.js', [], null);
 }
 
 add_action('wp_enqueue_scripts', 'moderngallery_scripts');
 
-function moderngallery_widget_init() {
+function moderngallery_widget_init()
+{
 	/*
 	register_sidebar([
 		'name'			=> 'sidebar',
@@ -118,6 +122,7 @@ function moderngallery_widget_init() {
 	]);
 	*/
 }
+
 add_action('widgets_init', 'moderngallery_widget_init');
 
 function setup_custom_post_types()
@@ -273,7 +278,8 @@ function render_artwork_details($post)
 					<?php if ($results): ?>
 						<?php foreach ($results as $artist):; ?>
 							<?php var_dump($artist); ?>
-							<option value="<?php echo $artist->post_title; ?>" <?php selected($selected_artist, $artist->post_title); ?>>
+							<option
+								value="<?php echo $artist->post_title; ?>" <?php selected($selected_artist, $artist->post_title); ?>>
 								<?php echo $artist->post_title; ?>
 							</option>
 						<?php endforeach; ?>
@@ -333,12 +339,12 @@ function save_artwork_details($post_id)
 		update_post_meta($post_id, 'Artist', esc_attr($_POST['Artist']));
 
 	// Make sure your data is set before trying to save it
-	if( isset( $_POST['Price'] ) )
-		update_post_meta( $post_id, 'Price', wp_kses( $_POST['Price'], $allowed ) );
-	if( isset( $_POST['Width'] ) )
-		update_post_meta( $post_id, 'Width', wp_kses( $_POST['Width'], $allowed ) );
-	if( isset( $_POST['Height'] ) )
-		update_post_meta( $post_id, 'Height', wp_kses( $_POST['Height'], $allowed ) );
+	if (isset($_POST['Price']))
+		update_post_meta($post_id, 'Price', wp_kses($_POST['Price'], $allowed));
+	if (isset($_POST['Width']))
+		update_post_meta($post_id, 'Width', wp_kses($_POST['Width'], $allowed));
+	if (isset($_POST['Height']))
+		update_post_meta($post_id, 'Height', wp_kses($_POST['Height'], $allowed));
 
 	// This is purely my personal preference for saving check-boxes
 	/*
@@ -346,6 +352,7 @@ function save_artwork_details($post_id)
 	update_post_meta( $post_id, 'my_meta_box_check', $chk );
 	*/
 }
+
 add_action('save_post', 'save_artwork_details');
 
 function query_intercept($query)
@@ -362,9 +369,71 @@ add_action('pre_get_posts', 'query_intercept');
 // AJAX request handleing
 function test_connection()
 {
-	$response = ["title" => "Response Data", "content" => "This is a AJAX response data."];
+	$response = ["title" => "Response Data", "result" => "success"];
 	wp_send_json($response);
 }
 
 add_action('wp_ajax_test_connection', 'test_connection');
 add_action('wp_ajax_nopriv_test_connection', 'test_connection');
+
+function get_artwork()
+{
+	$post_id = filter_var($_POST['post_id'], FILTER_SANITIZE_NUMBER_INT);
+	$post = get_post($post_id);
+
+	$response = [
+		'id' => $post->ID,
+		'title' => $post->post_title,
+		'image' => wp_get_attachment_url(get_post_thumbnail_id($post->ID)),
+		'artist' => get_post_meta($post->ID, 'Artist', true),
+		'width' => get_post_meta($post->ID, 'Width', true),
+		'height' => get_post_meta($post->ID, 'Height', true)
+	];
+	wp_send_json($response);
+}
+
+add_action('wp_ajax_get_artwork', 'get_artwork');
+add_action('wp_ajax_nopriv_get_artwork', 'get_artwork');
+
+function get_all_artwork()
+{
+	$page = filter_var($_POST['page'], FILTER_SANITIZE_NUMBER_INT);
+	if ($page < 1) { $page = 0; }
+
+	$args = [
+		'post_type' => 'artwork',
+		'post_status' => 'publish',
+		'posts_per_page' => 30,
+		'page_id' => $page,
+		'orderby' => 'name'
+	];
+	$query = new WP_Query($args);
+
+	$response = [
+		'data' => [
+			'artwork_returned' => $query->posts,
+			'count' => $query->found_posts,
+			'page' => $page,
+			'number_of_pages' => $query->max_num_pages],
+		'artwork' => []
+	];
+
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+
+			$response['artwork'][get_the_id()] = [
+				'id' => get_the_id(),
+				'title' => get_the_title(),
+				'image_url' => get_the_post_thumbnail_url(),
+				'artist' => get_post_meta(get_the_id(), 'Artist', true),
+				'width' => get_post_meta(get_the_id(), 'Width', true),
+				'height' => get_post_meta(get_the_id(), 'Height', true)
+			];
+		}
+	}
+	wp_send_json($response);
+}
+
+add_action('wp_ajax_get_all_artwork', 'get_all_artwork');
+add_action('wp_ajax_nopriv_get_all_artwork', 'get_all_artwork');
