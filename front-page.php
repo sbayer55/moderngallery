@@ -22,20 +22,8 @@ $args = [
 ];
 ?>
 
-<?php $artwork = new WP_Query($args) ?>
 <section class="content">
 	<div class="grid">
-		<?php if ($artwork->have_posts() && false): ?>
-			<?php while ($artwork->have_posts()): $artwork->the_post(); ?>
-
-				<div class="grid-item">
-					<?php the_content(); ?>
-					<?php the_post_thumbnail('medium', ['class' => 'img-masonry']); ?>
-				</div>
-
-			<?php endwhile; ?>
-		<?php endif; ?>
-
 	</div>
 </section><!-- container -->
 <?php wp_reset_postdata(); ?>
@@ -48,6 +36,7 @@ $args = [
 		var count = 0;
 
 		$('.grid').append($columns);
+		$('.grid').append($('<div style="clear: both"></div>'));
 
 		$.each(artwork, function(index, value) {
 			var $element = mg.toElement(value, count);

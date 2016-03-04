@@ -38,11 +38,52 @@ nav.navbar-panel {
 	left: 0px;
 	top: 0px;
 	bottom: 0px;
-	padding: 50px 40px;
+	padding: 40px;
 	display: block;
 	width: 280px;
 	-webkit-font-smoothing: subpixel-antialiased;
 	background-color: #FFF;
+}
+
+.navbar-space {
+	width: 80px;
+	height: 4px;
+	display: inline-block;
+	background-color: hsla(120,35%,83%,1);
+	margin: 20px 0px;
+}
+
+.navbar-blocktext {
+	line-height: 1.5;
+	color: #666;
+}
+
+.nav-moderngallery {
+	padding: 0px;
+	margin: 0px;
+}
+.nav-moderngallery > li {
+	list-style-type: none;
+	padding: 8px 0px;
+	color: #aaa;
+	transition: 0.5s color ease;
+}
+.nav-moderngallery > li.active, .nav-moderngallery > li:hover {
+	color: #333;
+}
+
+.nav-artists {
+	padding: 0px;
+	margin: 0px;
+}
+.nav-artists > li {
+	list-style-type: none;
+	padding: 8px 0px;
+	color: #333;
+	transition: 0.5s color ease;
+}
+.nav-artists > li.active, .nav-artists > li:hover {
+	color: #999;
 }
 
 .template-area {
@@ -51,7 +92,7 @@ nav.navbar-panel {
 }
 
 .content {
-	margin: 40px auto 50px;
+	margin: 40px auto;
 	width: 1200px;
 	max-width: 86%;
 }

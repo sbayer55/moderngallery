@@ -69,37 +69,47 @@ if (filter_var($_POST['action'], FILTER_SANITIZE_STRING) == 'register_user') {
 <nav class="navbar-panel">
 
 	<!-- brand img -->
-	<img style="width: 100%; height: 200px; padding: 5px 5px 5px 0px;"
-		 src="<?php echo get_bloginfo('template_directory'); ?>/images/brand.svg" alt="The Silent Vowel">
+	<img style="" src="<?php echo get_bloginfo('template_directory'); ?>/images/brand.svg" alt="The Silent Vowel">
+
+	<div class="navbar-space"></div>
 
 	<!-- Menu Nav Bar -->
 	<?php if (has_nav_menu('primary')): ?>
-		<div id="collapse-primary-menu" class="collapse navbar-collapse navbar-modern">
-			<ul class="nav navbar-nav">
-				<?php
-				$menu_args = array(
-					'theme_location' => 'primary',
-					'menu' => 'primary-menu',
-					'container' => false,
-					'before' => '', // here <a href=""> link </a>
-					'after' => '', // <a href=""> Link </a> here
-					'link_before' => '', // <a href=""> here Link </a>
-					'link_after' => '', // <a href=""> Link here </a>
-					'items_wrap' => '%3$s',
-				);
-				wp_nav_menu($menu_args);
-				?>
-			</ul>
-		</div><!-- navbar -->
+		<ul class="nav-moderngallery">
+			<?php
+			$menu_args = array(
+				'theme_location' => 'primary',
+				'menu' => 'primary-menu',
+				'container' => false,
+				'before' => '', // here <a href=""> link </a>
+				'after' => '', // <a href=""> Link </a> here
+				'link_before' => '', // <a href=""> here Link </a>
+				'link_after' => '', // <a href=""> Link here </a>
+				'items_wrap' => '%3$s',
+			);
+			wp_nav_menu($menu_args);
+			?>
+		</ul>
 	<?php endif; ?>
 
+
+	<div class="navbar-space"></div>
+
 	<!-- About site text -->
-	<div>
+	<div class="navbar-blocktext">
 		The Silent Vowel Art Gallery is an online space dedicated to showcasing emerging talent in
 		contemporary art. Through our unique model - Be Original, Do Good - we are able to invest in our
 		artists, our clients, and our future.
 	</div>
 
+	<div class="navbar-space"></div>
+
+	<ul class="nav-artists">
+		<li><a href="#">Steven Bayer</a></li>
+		<li><a href="#">Jerry Anderson</a></li>
+		<li><a href="#">Krystina Nilsson</a></li>
+		<li><a href="#">Stephany Nicole</a></li>
+	</ul>
 </nav>
 
 <div class="template-area">

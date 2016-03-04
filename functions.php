@@ -428,7 +428,8 @@ function get_all_artwork()
 				'image_url' => get_the_post_thumbnail_url(),
 				'artist' => get_post_meta(get_the_id(), 'Artist', true),
 				'width' => get_post_meta(get_the_id(), 'Width', true),
-				'height' => get_post_meta(get_the_id(), 'Height', true)
+				'height' => get_post_meta(get_the_id(), 'Height', true),
+				'link' => get_permalink()
 			];
 		}
 	}

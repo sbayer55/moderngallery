@@ -60,7 +60,7 @@ var mg = {
             })
             .fail(function(data, responseText) {
                 console.log('Unable to build cache.');
-                console.log(data)
+                console.log(data);
                 console.log(responseText);
                 deferred.reject(data);
             });
@@ -89,7 +89,7 @@ var mg = {
     },
     toElement: function(artwork, delay) {
         console.log(artwork);
-        var $tile = $('<div>', {id: artwork.title, class: 'grid-item'});
+        var $tile = $('<div>', {id: artwork.title, class: 'grid-item', onclick: 'window.location = \'' + artwork.link + '\''});
 
         var $innerWrapper = $('<div>', {class: 'inner-wrapper'});
         $innerWrapper.append($('<img>', {src: artwork.image_url}));
